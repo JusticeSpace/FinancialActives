@@ -1,0 +1,62 @@
+﻿<Window x:Class="EggplantsActivies.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EggplantsActivies"
+        mc:Ignorable="d"
+        Title="Asset Management" Height="680" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#D9E6B5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя часть (логотип и название) -->
+        <StackPanel Grid.Row="0" Background="#4A2C6A" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Image Source="/Photos/Icons/EGGPLANT YJHB 1.png" Width="100" Height="100" Margin="0,0,0,10"/>
+            <TextBlock Text="eggplants" Foreground="White" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="actives" Foreground="#A7D948" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Форма авторизации -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <TextBlock Text="Asset Management" FontSize="24" Foreground="#4A2C6A" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,30"/>
+            <TextBox materialDesign:HintAssist.Hint="Username" 
+                     Margin="0,0,0,15" 
+                     Height="40" 
+                     Width="250" 
+                     FontSize="14"/>
+            <PasswordBox materialDesign:HintAssist.Hint="Password" 
+                         Margin="0,0,0,15" 
+                         Height="40" 
+                         Width="250" 
+                         FontSize="14"/>
+            <Button Content="Login" 
+                    Height="40" 
+                    Width="250" 
+                    Margin="0,0,0,15" 
+                    Padding="10,0" 
+                    Background="#A7D948" 
+                    Foreground="White" 
+                    FontSize="14"
+                    Click="LoginClick"/>
+            <TextBlock Text="Forgot Password?" 
+                       Foreground="#A7D948" 
+                       Cursor="Hand" 
+                       FontSize="12"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Don't have an account? " 
+                           Foreground="#4A2C6A" 
+                           FontSize="12"/>
+                <TextBlock Text="Sign Up" 
+                           Foreground="#A7D948" 
+                           Cursor="Hand" 
+                           FontSize="12"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
