@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище AssetManagementDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище AssetManagementDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assets">
           <Key>
             <PropertyRef Name="AssetsID" />
@@ -19,6 +19,7 @@
           <Property Name="UserID" Type="int" />
           <Property Name="IsActive" Type="varchar" MaxLength="20" />
           <Property Name="ValueChangePercent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="CategoryId" Type="int" />
         </EntityType>
         <EntityType Name="AssetType">
           <Key>
@@ -63,6 +64,7 @@
           <Property Name="RoleID" Type="int" />
           <Property Name="LastLogin" Type="datetime" />
           <Property Name="PassportID" Type="int" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK__Assets__AssetTyp__32E0915F">
           <End Role="AssetType" Type="Self.AssetType" Multiplicity="0..1" />
@@ -136,8 +138,7 @@
             <End Role="UserManager" EntitySet="UserManager" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AssetManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -157,6 +158,7 @@
           <Property Name="ValueChangePercent" Type="Decimal" Precision="5" Scale="2" />
           <NavigationProperty Name="AssetType" Relationship="Self.FK__Assets__AssetTyp__32E0915F" FromRole="Assets" ToRole="AssetType" />
           <NavigationProperty Name="UserManager" Relationship="Self.FK__Assets__UserID__33D4B598" FromRole="Assets" ToRole="UserManager" />
+          <Property Name="CategoryId" Type="Int32" />
         </EntityType>
         <EntityType Name="AssetType">
           <Key>
@@ -207,6 +209,7 @@
           <NavigationProperty Name="Assets" Relationship="Self.FK__Assets__UserID__33D4B598" FromRole="UserManager" ToRole="Assets" />
           <NavigationProperty Name="Passport" Relationship="Self.FK__Users__PassportI__300424B4" FromRole="UserManager" ToRole="Passport" />
           <NavigationProperty Name="Role" Relationship="Self.FK__Users__RoleID__2F10007B" FromRole="UserManager" ToRole="Role" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Assets__AssetTyp__32E0915F">
           <End Role="AssetType" Type="Self.AssetType" Multiplicity="0..1" />
@@ -289,6 +292,7 @@
           <EntitySetMapping Name="Assets">
             <EntityTypeMapping TypeName="AssetManagementDBModel.Assets">
               <MappingFragment StoreEntitySet="Assets">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="AssetsID" ColumnName="AssetsID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AssetTypeID" ColumnName="AssetTypeID" />
@@ -339,6 +343,7 @@
           <EntitySetMapping Name="UserManager">
             <EntityTypeMapping TypeName="AssetManagementDBModel.UserManager">
               <MappingFragment StoreEntitySet="UserManager">
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="First_Name" ColumnName="First Name" />

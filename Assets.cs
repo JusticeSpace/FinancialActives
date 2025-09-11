@@ -24,6 +24,7 @@ namespace EggplantsActivies
         public Nullable<int> UserID { get; set; }
         public string IsActive { get; set; }
         public Nullable<decimal> ValueChangePercent { get; set; }
+        public Nullable<int> CategoryId { get; set; }
     
         public virtual AssetType AssetType { get; set; }
         public virtual UserManager UserManager { get; set; }
