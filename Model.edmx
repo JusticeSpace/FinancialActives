@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище AssetManagementDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Assets">
+          <Key>
+            <PropertyRef Name="AssetsID" />
+          </Key>
+          <Property Name="AssetsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="65" Nullable="false" />
+          <Property Name="AssetTypeID" Type="int" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="PurchaseDate" Type="date" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="CurrentValue" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="IsActive" Type="varchar" MaxLength="20" />
+          <Property Name="ValueChangePercent" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="AssetType">
+          <Key>
+            <PropertyRef Name="AssetTypeID" />
+          </Key>
+          <Property Name="AssetTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssetType" Type="varchar" MaxLength="52" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="52" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="PassportID" />
+          </Key>
+          <Property Name="PassportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PassportNumbers" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="WhoIssued" Type="varchar" MaxLength="152" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="52" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserManager">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="38" Nullable="false" />
+          <Property Name="First Name" Type="varchar" MaxLength="49" />
+          <Property Name="Second Name" Type="varchar" MaxLength="49" />
+          <Property Name="Surname" Type="varchar" MaxLength="49" />
+          <Property Name="Email" Type="varchar" MaxLength="49" Nullable="false" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="PassportID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Assets__AssetTyp__32E0915F">
+          <End Role="AssetType" Type="Self.AssetType" Multiplicity="0..1" />
+          <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetType">
+              <PropertyRef Name="AssetTypeID" />
+            </Principal>
+            <Dependent Role="Assets">
+              <PropertyRef Name="AssetTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assets__UserID__33D4B598">
+          <End Role="UserManager" Type="Self.UserManager" Multiplicity="0..1" />
+          <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserManager">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Assets">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__PassportI__300424B4">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="0..1" />
+          <End Role="UserManager" Type="Self.UserManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="PassportID" />
+            </Principal>
+            <Dependent Role="UserManager">
+              <PropertyRef Name="PassportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleID__2F10007B">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="UserManager" Type="Self.UserManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserManager">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AssetManagementDBModelContainer">
+          <EntitySet Name="Assets" EntityType="Self.Assets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetType" EntityType="Self.AssetType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserManager" EntityType="Self.UserManager" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Assets__AssetTyp__32E0915F" Association="Self.FK__Assets__AssetTyp__32E0915F">
+            <End Role="AssetType" EntitySet="AssetType" />
+            <End Role="Assets" EntitySet="Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assets__UserID__33D4B598" Association="Self.FK__Assets__UserID__33D4B598">
+            <End Role="UserManager" EntitySet="UserManager" />
+            <End Role="Assets" EntitySet="Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__PassportI__300424B4" Association="Self.FK__Users__PassportI__300424B4">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="UserManager" EntitySet="UserManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleID__2F10007B" Association="Self.FK__Users__RoleID__2F10007B">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserManager" EntitySet="UserManager" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AssetManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Assets">
+          <Key>
+            <PropertyRef Name="AssetsID" />
+          </Key>
+          <Property Name="AssetsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="65" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AssetTypeID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cost" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="CurrentValue" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="IsActive" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ValueChangePercent" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="AssetType" Relationship="Self.FK__Assets__AssetTyp__32E0915F" FromRole="Assets" ToRole="AssetType" />
+          <NavigationProperty Name="UserManager" Relationship="Self.FK__Assets__UserID__33D4B598" FromRole="Assets" ToRole="UserManager" />
+        </EntityType>
+        <EntityType Name="AssetType">
+          <Key>
+            <PropertyRef Name="AssetTypeID" />
+          </Key>
+          <Property Name="AssetTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssetType1" Type="String" MaxLength="52" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Assets" Relationship="Self.FK__Assets__AssetTyp__32E0915F" FromRole="AssetType" ToRole="Assets" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="52" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="PassportID" />
+          </Key>
+          <Property Name="PassportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PassportNumbers" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WhoIssued" Type="String" MaxLength="152" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserManager" Relationship="Self.FK__Users__PassportI__300424B4" FromRole="Passport" ToRole="UserManager" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="52" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserManager" Relationship="Self.FK__Users__RoleID__2F10007B" FromRole="Role" ToRole="UserManager" />
+        </EntityType>
+        <EntityType Name="UserManager">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="38" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="49" FixedLength="false" Unicode="false" />
+          <Property Name="Second_Name" Type="String" MaxLength="49" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="49" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="49" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="PassportID" Type="Int32" />
+          <NavigationProperty Name="Assets" Relationship="Self.FK__Assets__UserID__33D4B598" FromRole="UserManager" ToRole="Assets" />
+          <NavigationProperty Name="Passport" Relationship="Self.FK__Users__PassportI__300424B4" FromRole="UserManager" ToRole="Passport" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Users__RoleID__2F10007B" FromRole="UserManager" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK__Assets__AssetTyp__32E0915F">
+          <End Role="AssetType" Type="Self.AssetType" Multiplicity="0..1" />
+          <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetType">
+              <PropertyRef Name="AssetTypeID" />
+            </Principal>
+            <Dependent Role="Assets">
+              <PropertyRef Name="AssetTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assets__UserID__33D4B598">
+          <End Role="UserManager" Type="Self.UserManager" Multiplicity="0..1" />
+          <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserManager">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Assets">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__PassportI__300424B4">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="0..1" />
+          <End Role="UserManager" Type="Self.UserManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="PassportID" />
+            </Principal>
+            <Dependent Role="UserManager">
+              <PropertyRef Name="PassportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleID__2F10007B">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="UserManager" Type="Self.UserManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserManager">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AssetManagementDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assets" EntityType="Self.Assets" />
+          <EntitySet Name="AssetType" EntityType="Self.AssetType" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="UserManager" EntityType="Self.UserManager" />
+          <AssociationSet Name="FK__Assets__AssetTyp__32E0915F" Association="Self.FK__Assets__AssetTyp__32E0915F">
+            <End Role="AssetType" EntitySet="AssetType" />
+            <End Role="Assets" EntitySet="Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assets__UserID__33D4B598" Association="Self.FK__Assets__UserID__33D4B598">
+            <End Role="UserManager" EntitySet="UserManager" />
+            <End Role="Assets" EntitySet="Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__PassportI__300424B4" Association="Self.FK__Users__PassportI__300424B4">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="UserManager" EntitySet="UserManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleID__2F10007B" Association="Self.FK__Users__RoleID__2F10007B">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserManager" EntitySet="UserManager" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AssetManagementDBModelContainer" CdmEntityContainer="AssetManagementDBEntities">
+          <EntitySetMapping Name="Assets">
+            <EntityTypeMapping TypeName="AssetManagementDBModel.Assets">
+              <MappingFragment StoreEntitySet="Assets">
+                <ScalarProperty Name="AssetsID" ColumnName="AssetsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AssetTypeID" ColumnName="AssetTypeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="CurrentValue" ColumnName="CurrentValue" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ValueChangePercent" ColumnName="ValueChangePercent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetType">
+            <EntityTypeMapping TypeName="AssetManagementDBModel.AssetType">
+              <MappingFragment StoreEntitySet="AssetType">
+                <ScalarProperty Name="AssetTypeID" ColumnName="AssetTypeID" />
+                <ScalarProperty Name="AssetType1" ColumnName="AssetType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="AssetManagementDBModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passport">
+            <EntityTypeMapping TypeName="AssetManagementDBModel.Passport">
+              <MappingFragment StoreEntitySet="Passport">
+                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+                <ScalarProperty Name="PassportNumbers" ColumnName="PassportNumbers" />
+                <ScalarProperty Name="WhoIssued" ColumnName="WhoIssued" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="AssetManagementDBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserManager">
+            <EntityTypeMapping TypeName="AssetManagementDBModel.UserManager">
+              <MappingFragment StoreEntitySet="UserManager">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Second_Name" ColumnName="Second Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

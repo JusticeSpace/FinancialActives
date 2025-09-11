@@ -1,35 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using EggplantsActivies.Data;
+using EggplantsActivies.Roles;
+using EggplantsActivies.Users;  // Для ProfileWindow
 
 namespace EggplantsActivies
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly DatabaseHelper _dbHelper;
+
         public MainWindow()
         {
             InitializeComponent();
+            _dbHelper = new DatabaseHelper();
         }
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
-            Users.ProfileWindow profileWindow = new Users.ProfileWindow();
-            profileWindow.Show();
-            this.Close();
+            string login = LoginTextBox.Text;  // Убедитесь, что TextBox имеет x:Name="LoginTextBox"
+            string password = PasswordBox.Password;  // Убедитесь, что PasswordBox имеет x:Name="PasswordBox"
+
+            if (_dbHelper.AuthenticateUser(login, password))
+            {
+                ProfileWindow profileWindow = new ProfileWindow();
+                profileWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Неверный логин или пароль");
+            }
+        }
+
+        private void ForgotPassword_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Свяжитесь с менеджером для восстановления пароля");
+        }
+
+        private void SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Регистрация доступна только через менеджера");
         }
     }
 }
