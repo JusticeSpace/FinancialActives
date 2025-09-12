@@ -13,5 +13,6 @@ namespace EggplantsActivies
     /// </summary>
     public partial class App : Application
     {
+        public static string CurrentUserLogin { get; set; }
     }
 }

@@ -22,8 +22,8 @@ namespace EggplantsActivies
     
         public int UserID { get; set; }
         public string Login { get; set; }
-        public string First_Name { get; set; }
-        public string Second_Name { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
         public Nullable<int> RoleID { get; set; }
