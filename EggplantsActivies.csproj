@@ -75,13 +75,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Addresses.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetCategories.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Assets.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="AssetType.cs">
+    <Compile Include="AssetTransactions.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Categories.cs">
+    <Compile Include="AuditLogs.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IssuedAssets.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">
@@ -100,10 +109,10 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\UserViewModel.cs" />
-    <Compile Include="Passport.cs">
+    <Compile Include="Passports.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Role.cs">
+    <Compile Include="Roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Roles\Admin\AdminWindow.xaml.cs">
@@ -116,9 +125,6 @@
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Roles\Manager\Pages\UsersPage.xaml.cs">
-      <DependentUpon>UsersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Roles\Manager\UsersPage.xaml.cs">
       <DependentUpon>UsersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Roles\ProfileWindow.xaml.cs">
@@ -134,10 +140,25 @@
     <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Statuses.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Streets.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserManager.cs">
+    <Compile Include="Towns.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ValueHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vendors.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -169,10 +190,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Roles\Manager\Pages\UsersPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Roles\Manager\UsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -27,13 +27,21 @@ namespace EggplantsActivies
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Addresses> Addresses { get; set; }
+        public virtual DbSet<AssetCategories> AssetCategories { get; set; }
         public virtual DbSet<Assets> Assets { get; set; }
-        public virtual DbSet<AssetType> AssetType { get; set; }
-        public virtual DbSet<Categories> Categories { get; set; }
-        public virtual DbSet<Passport> Passport { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<AssetTransactions> AssetTransactions { get; set; }
+        public virtual DbSet<AuditLogs> AuditLogs { get; set; }
+        public virtual DbSet<IssuedAssets> IssuedAssets { get; set; }
+        public virtual DbSet<Passports> Passports { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Statuses> Statuses { get; set; }
+        public virtual DbSet<Streets> Streets { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<UserManager> UserManager { get; set; }
+        public virtual DbSet<Towns> Towns { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<ValueHistory> ValueHistory { get; set; }
+        public virtual DbSet<Vendors> Vendors { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

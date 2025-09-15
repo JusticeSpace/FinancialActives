@@ -4,18 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="92717bbffb8a46d0bdf5be201052919b" Name="Diagram1">
-        <EntityTypeShape EntityType="AssetManagementDBModel.Assets" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssetManagementDBModel.AssetType" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssetManagementDBModel.Categories" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssetManagementDBModel.Passport" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssetManagementDBModel.Role" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssetManagementDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AssetManagementDBModel.UserManager" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="AssetManagementDBModel.FK__Assets__AssetTyp__32E0915F" ManuallyRouted="false" />
-        <AssociationConnector Association="AssetManagementDBModel.FK__Assets__UserID__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="AssetManagementDBModel.FK__Users__PassportI__300424B4" ManuallyRouted="false" />
-        <AssociationConnector Association="AssetManagementDBModel.FK__Users__RoleID__2F10007B" ManuallyRouted="false" />
+      <Diagram DiagramId="79add494d61143619894065ad172b881" Name="Diagram1">
+        <EntityTypeShape EntityType="AssetManagementDBModel.Addresses" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.AssetCategories" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.Assets" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.AssetTransactions" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.AuditLogs" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.IssuedAssets" Width="1.5" PointX="13.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.Passports" Width="1.5" PointX="3.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.Roles" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.Statuses" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.Streets" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.Towns" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.Users" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.ValueHistory" Width="1.5" PointX="10.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssetManagementDBModel.Vendors" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Addresses__Statu__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Addresses__Stree__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Addresses__TownI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Assets__AddressI__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Assets__Category__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Assets__UserID__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Assets__VendorID__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__AssetTran__Asset__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__IssuedAss__Asset__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__ValueHist__Asset__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__AssetTran__Statu__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__AuditLogs__Statu__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__AuditLogs__UserI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__IssuedAss__UserI__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Users__PassportI__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__Users__RoleID__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="AssetManagementDBModel.FK__ValueHist__Statu__45F365D3" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

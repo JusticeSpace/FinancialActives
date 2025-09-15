@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EggplantsActivies"
         mc:Ignorable="d"
-        Title="Asset Management" Height="720" Width="900"
+        Title="Управление активами" Height="720" Width="900"
         WindowStartupLocation="CenterScreen"
         Background="#D9E6B5">
     <Grid>
@@ -24,7 +24,7 @@
         <!-- Форма авторизации -->
         <Border Grid.Row="1" Background="White" CornerRadius="0,0,10,10" Margin="30,0,30,30" Padding="30">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
-                <TextBlock Text="Asset Management" FontSize="28" Foreground="#4A2C6A" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,20,0,40"/>
+                <TextBlock Text="Управление активами" FontSize="28" Foreground="#4A2C6A" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,20,0,40"/>
                 <Border Background="#F5F5F5" CornerRadius="8" Padding="20">
                     <StackPanel>
                         <TextBlock Text="Логин" Foreground="#4A2C6A" FontSize="16" Margin="0,0,0,5"/>

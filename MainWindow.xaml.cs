@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows;
 using System.Linq;
+using System.Windows;
 using EggplantsActivies.Roles;
 using EggplantsActivies.Roles.Admin;
 using EggplantsActivies.Users;
@@ -42,9 +42,9 @@ namespace EggplantsActivies
 
         private bool AuthenticateUser(string login, string password)
         {
-            using (var db = new ApplicationContext())
+            using (var db = DatabaseHelper.GetContext())
             {
-                var user = db.UserManagers.FirstOrDefault(u => u.Login == login && u.Password == password);
+                var user = db.Users.FirstOrDefault(u => u.Username == login && u.PasswordHash == password); // Используем Username и PasswordHash из EDMX
                 return user != null;
             }
         }
@@ -54,11 +54,11 @@ namespace EggplantsActivies
             // Простая логика ролей, как в Castle_IS
             if (login.ToLower() == "admin")
             {
-                return new AdminWindow();
+                return new EggplantsActivies.Roles.Admin.AdminWindow();
             }
             else
             {
-                return new ProfileWindow();
+                return new EggplantsActivies.Users.ProfileWindow();
             }
         }
 

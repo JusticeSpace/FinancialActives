@@ -12,38 +12,33 @@ namespace EggplantsActivies
     using System;
     using System.Collections.Generic;
     
-    public partial class Assets
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Assets()
+        public Users()
         {
-            this.AssetTransactions = new HashSet<AssetTransactions>();
+            this.Assets = new HashSet<Assets>();
+            this.AuditLogs = new HashSet<AuditLogs>();
             this.IssuedAssets = new HashSet<IssuedAssets>();
-            this.ValueHistory = new HashSet<ValueHistory>();
         }
     
-        public int AssetID { get; set; }
-        public string AssetName { get; set; }
-        public string AssetDescription { get; set; }
-        public Nullable<System.DateTime> PurchaseDate { get; set; }
-        public Nullable<decimal> PurchaseCost { get; set; }
-        public Nullable<decimal> CurrentValue { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public string IsActive { get; set; }
-        public Nullable<decimal> ValueChangePercent { get; set; }
-        public Nullable<int> CategoryID { get; set; }
-        public Nullable<int> AddressID { get; set; }
-        public Nullable<int> VendorID { get; set; }
+        public int UserID { get; set; }
+        public string Username { get; set; }
+        public string PasswordHash { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public Nullable<int> RoleID { get; set; }
+        public Nullable<System.DateTime> LastLogin { get; set; }
+        public Nullable<int> PassportID { get; set; }
     
-        public virtual Addresses Addresses { get; set; }
-        public virtual AssetCategories AssetCategories { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual Vendors Vendors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AssetTransactions> AssetTransactions { get; set; }
+        public virtual ICollection<Assets> Assets { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AuditLogs> AuditLogs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IssuedAssets> IssuedAssets { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ValueHistory> ValueHistory { get; set; }
+        public virtual Passports Passports { get; set; }
+        public virtual Roles Roles { get; set; }
     }
 }
